@@ -1,1 +1,10 @@
 /placement.csv
+__pycache__/
+*.pyc
+*.pkl
+mlruns/
+dvc.lock
+*.dvc
+.env
+airflow_env/
+venv/
