@@ -5,8 +5,7 @@ import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
-from preprocessing import load_data, preprocess
-
+from src.preprocessing import load_data, preprocess
 # Set experiment
 mlflow.set_experiment("placement_prediction")
 
