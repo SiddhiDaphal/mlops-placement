@@ -8,3 +8,5 @@ dvc.lock
 .env
 airflow_env/
 venv/
+model.pkl
+mlruns/

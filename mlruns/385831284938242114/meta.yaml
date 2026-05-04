@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/USER/mlops/mlops-placement/mlruns/385831284938242114
+creation_time: 1777899683923
+experiment_id: '385831284938242114'
+last_update_time: 1777899683923
+lifecycle_stage: active
+name: placement_prediction
