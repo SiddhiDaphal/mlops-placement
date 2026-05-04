@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/USER/mlops/mlops-placement/mlruns/385831284938242114/598820b9b18d4e4a8ec72e703d3b757d/artifacts
+end_time: 1777899688884
+entry_point_name: ''
+experiment_id: '385831284938242114'
+lifecycle_stage: active
+run_id: 598820b9b18d4e4a8ec72e703d3b757d
+run_name: thundering-perch-142
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777899684092
+status: 3
+tags: []
+user_id: USER
