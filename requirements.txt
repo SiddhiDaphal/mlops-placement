@@ -2,6 +2,7 @@ fastapi
 uvicorn
 pandas
 scikit-learn
-mlflow
 joblib
-dvc
+evidently
+prefect
+mlflow
