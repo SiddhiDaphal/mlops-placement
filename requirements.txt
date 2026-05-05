@@ -1,8 +1,8 @@
 fastapi
 uvicorn
-pandas
 scikit-learn
-joblib
-evidently
-prefect
+pandas
+numpy
 mlflow
+dvc
+prefect

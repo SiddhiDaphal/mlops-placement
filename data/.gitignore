@@ -4,9 +4,11 @@ __pycache__/
 *.pkl
 mlruns/
 dvc.lock
-*.dvc
 .env
 airflow_env/
 venv/
 model.pkl
-mlruns/
+report.html
+# DVC rules
+data/*
+!data/*.dvc
