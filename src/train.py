@@ -4,35 +4,52 @@ import joblib
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 
-from src.preprocessing import load_data, preprocess
-# Set experiment
-mlflow.set_experiment("placement_prediction")
 
-# Load + preprocess
-df = load_data()
-X, y = preprocess(df)
+def train_model(X, y):
 
-# Split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    # Set experiment
+    mlflow.set_experiment("placement_prediction")
 
-with mlflow.start_run():
+    # Split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-    # Model
-    model = RandomForestClassifier(n_estimators=50)
-    model.fit(X_train, y_train)
+    # Models
+    models = {
+        "RandomForest": RandomForestClassifier(n_estimators=50),
+        "LogisticRegression": LogisticRegression(),
+        "DecisionTree": DecisionTreeClassifier()
+    }
 
-    # Accuracy
-    acc = model.score(X_test, y_test)
+    best_model = None
+    best_score = 0
 
-    # Log to MLflow
-    mlflow.log_param("n_estimators", 50)
-    mlflow.log_metric("accuracy", acc)
+    for name, model in models.items():
 
-    mlflow.sklearn.log_model(model, "model")
+        with mlflow.start_run(run_name=name):
 
-    # Save locally
-    joblib.dump(model, "model.pkl")
+            # Train
+            model.fit(X_train, y_train)
 
-    print("Model trained")
-    print("Accuracy:", acc)
+            # Evaluate
+            acc = model.score(X_test, y_test)
+
+            # Log
+            mlflow.log_param("model", name)
+            mlflow.log_metric("accuracy", acc)
+
+            mlflow.sklearn.log_model(model, "model")
+
+            print(f"{name} Accuracy: {acc}")
+
+            # Save best model
+            if acc > best_score:
+                best_score = acc
+                best_model = model
+
+    # Save best model
+    joblib.dump(best_model, "model.pkl")
+
+    print("Best model saved with accuracy:", best_score)
